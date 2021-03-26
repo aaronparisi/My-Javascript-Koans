@@ -195,22 +195,46 @@ describe("About Applying What We Have Learnt", function() {
       return parseInt(candidates[candidates.length - 1])
     }
 
-    // expect(largestPalindrome(112, 154)).toBe(8)
+    expect(largestPalindrome(112, 154)).toBe(8)
     expect(largestPalindrome(123, 456)).toBe(868)  // prod = 56088
+    expect(largestPalindrome(671, 816)).toBe(575)  // prod = 547,536
+    expect(largestPalindrome(111, 111)).toBe(21312)  // prod = 12321
 
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
+    const smallestDiv = (candidate = 380) => {
+      for (let i=19; i>10; i--) {
+        if (candidate % i !== 0) {
+          return smallestDiv(candidate + 380)
+        }
+      }
 
+      return candidate;
+    }
 
+    // expect(smallestDiv()).toBe(232792560)
+    // ! this works, but the stack size is exceeded
+    // ? how can I make it more efficient?
+    // even going up by 380 means it'll take 612,612 iterations to get the answer
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
+    const sillyDiff = (a, b) => {
+      return (
+        ((a**2)+(b**2)) - 
+        ((a+b)**2)
+      )
+    }
 
+    expect(sillyDiff(0, 0)).toBe(0)
+    expect(sillyDiff(1, -1)).toBe(2)
+    expect(sillyDiff(1, 1)).toBe(-2)
+    expect(sillyDiff(519, 146)).toBe(-151548)
   });
 
   it("should find the 10001st prime", function () {
-
+    
   });
   
 });
